@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Manish Sharma — Portfolio</title>
+  <meta name="description" content="Manish Sharma — Data Scientist | AI & ML | Visualization | Portfolio" />
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Inter Font -->
+  <link href="https://rsms.me/inter/inter.css" rel="stylesheet">
+  <!-- AOS for scroll animations -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Font Awesome for Icons (more reliable) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2HqBKP04GgD5g4E8a26jQ7T3/V7D50R5y181g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root{--bg:#061024;--card:#071428;--accent:#06b6d4;--accent2:#8b5cf6;--muted:rgba(255,255,255,0.65)}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,var(--bg),#041025);color:#e6eef6}
+    /* custom scroll */
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.06);border-radius:10px}
+    .glass{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(6px)}
+    .tag{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.03);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .btn-neon{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#03141a;font-weight:700;padding:10px 14px;border-radius:10px}
+    .btn-outline{border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted)}
+    .project-card{transition:transform .22s, box-shadow .22s}
+    .project-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(11,17,30,0.6)}
+    /* mobile menu */
+    .mobile-menu{display:none}
+    @media (max-width:900px){.mobile-menu{display:block}.desktop-menu{display:none}}
+    .back-to-top{position:fixed;right:18px;bottom:18px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#04141a;padding:10px;border-radius:999px;display:none}
+
+    /* New styles for the skills section */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1rem;
+    }
+    .skills-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      height: 120px;
+    }
+    .skills-card:hover {
+      transform: translateY(-5px);
+    }
+    .skills-card i {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+    }
+    .skills-card span {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #e6eef6;
+    }
+    .skills-section h3 {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    /* Project list styles with icons */
+    .project-list-item {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: transform 0.2s ease-in-out;
+    }
+    .project-list-item:hover {
+      transform: translateY(-5px);
+    }
+    .project-list-item h4 {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: 0.5rem;
+    }
+    .project-list-item p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .project-list-item a {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+    .project-icon {
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        color: #03141a;
+        width: 48px;
+        height: 48px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        font-size: 1.25rem;
+    }
+    .project-content {
+      display: flex;
+      flex-direction: column;
+    }
+    .project-category {
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 glass">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <!-- User's photo -->
+        <img src="https://i.ibb.co/FL3FC7nw/Manish-Sharma.jpg" alt="Manish Sharma" class="w-10 h-10 rounded-full object-cover border-2 border-white/6 shadow">
+        <div class="text-sm font-semibold">Manish Sharma</div>
+      </a>
+      <nav class="desktop-menu">
+        <ul class="flex gap-6 text-sm items-center">
+          <li><a href="#about" class="hover:text-sky-300">About</a></li>
+          <li><a href="#projects" class="hover:text-sky-300">Projects</a></li>
+          <li><a href="#experience" class="hover:text-sky-300">Experience</a></li>
+          <li><a href="#education" class="hover:text-sky-300">Education</a></li>
+          <li><a href="#skills" class="hover:text-sky-300">Skills</a></li>
+          <li><a href="#contact" class="hover:text-sky-300">Contact</a></li>
+          <li><a id="downloadCV" class="ml-2 btn-outline hover:bg-white/3" href="https://drive.google.com/file/d/17lczC9_YtDE7qQOgVz8IXNAE6AH9Lo-X/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Download CV</a></li>
+        </ul>
+      </nav>
+      <button id="hamb" class="mobile-menu p-2 rounded-md border border-white/6">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <!-- mobile popup -->
+    <div id="mnav" class="glass p-4 max-w-6xl mx-auto mobile-menu hidden rounded-b-lg">
+      <div class="flex flex-col gap-3 text-sm">
+        <a href="#about" class="py-2">About</a>
+        <a href="#projects" class="py-2">Projects</a>
+        <a href="#experience" class="py-2">Experience</a>
+        <a href="#education" class="py-2">Education</a>
+        <a href="#skills" class="py-2">Skills</a>
+        <a href="#contact" class="py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main class="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-6 py-8">
+    <!-- LEFT PROFILE CARD -->
+    <aside class="lg:col-span-1 glass rounded-2xl p-6 sticky top-28">
+      <!-- User's photo -->
+      <img src="https://i.ibb.co/FL3FC7nw/Manish-Sharma.jpg" alt="Manish Sharma" class="w-28 h-28 rounded-full object-cover border-2 border-white/6 shadow mb-4">
+      <h2 class="text-xl font-bold">Manish Sharma</h2>
+      <!-- Both positions added here -->
+      <p class="text-sm text-white/80">Data Scientist, Analyst, Executive & Visualization Specialist</p>
+      <p class="text-sm text-white/80">AI & Ml with Python Developer & Trainee</p>
+
+      <div class="mt-4 flex gap-3 flex-wrap">
+        <a href="https://github.com/themanishpndt" target="_blank" class="w-9 h-9 flex items-center justify-center glass rounded-md"><i class="fa-brands fa-github-alt"></i></a>
+        <a href="https://www.linkedin.com/in/themanishpndt" target="_blank" class="w-9 h-9 flex items-center justify-center glass rounded-md"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/themanishpndt" target="_blank" class="w-9 h-9 flex items-center justify-center glass rounded-md"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://twitter.com/themanishpndt" target="_blank" class="w-9 h-9 flex items-center justify-center glass rounded-md"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.facebook.com/themanishpndt" target="_blank" class="w-9 h-9 flex items-center justify-center glass rounded-md"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="mailto:manishsharma93155@gmail.com" class="w-9 h-9 flex items-center justify-center glass rounded-md"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+
+      <div class="mt-4">
+        <p class="text-sm text-white/80">Results-driven Data Science & AI Specialist with expertise in Python, ML (Deep Learning, Neural Networks), and Data Analytics. Skilled in predictive modeling, data visualization (Power BI, Tableau), and database management (SQL, MySQL). Developed AI solutions like Face Recognition Attendance System and automated dashboards. IBM Data Science Certified with strong analytical and problem-solving abilities. Proven leadership in managing teams and delivering data-driven insights. Strong communicator adept at cross-functional collaboration in global environments.</p>
+      </div>
+
+      <div class="mt-4">
+        <h4 class="text-xs text-white/70 uppercase">Top Skills</h4>
+        <div class="mt-2 flex flex-wrap gap-2">
+          <span class="tag">Python</span>
+          <span class="tag">SQL</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">Machine Learning</span>
+          <span class="tag">Deep Learning</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+
+      <div class="mt-6 flex gap-2">
+        <a href="#contact" class="btn-outline">Hire / Contact</a>
+        <a id="resumeBtn" class="btn-neon" href="https://drive.google.com/file/d/17lczC9_YtDE7qQOgVz8IXNAE6AH9Lo-X/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Download Resume</a>
+      </div>
+    </aside>
+
+    <!-- MAIN COLUMN -->
+    <section class="lg:col-span-3 space-y-8">
+      <!-- HERO (big) -->
+      <div class="glass rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+        <div class="md:col-span-2">
+          <h1 class="text-3xl font-extrabold">Hi, I'm Manish</h1>
+          <p class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent2">Data Scientist, Analyst, Executive & Visualization Specialist</p>
+          <p class="mt-2 text-white/80">Results-driven Data Science & AI Specialist with expertise in Python, ML (Deep Learning, Neural Networks), and Data Analytics. Skilled in predictive modeling, data visualization (Power BI, Tableau), and database management (SQL, MySQL). Developed AI solutions like Face Recognition Attendance System and automated dashboards. IBM Data Science Certified with strong analytical and problem-solving abilities. Proven leadership in managing teams and delivering data-driven insights. Strong communicator adept at cross-functional collaboration in global environments.</p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <a href="#projects" class="btn-neon">Explore Projects</a>
+            <a href="https://github.com/themanishpndt" target="_blank" class="btn-outline">View GitHub</a>
+            <a href="#contact" class="btn-outline">Let's Talk</a>
+          </div>
+        </div>
+        <div class="md:col-span-1 flex justify-center">
+          <!-- User's photo -->
+          <img src="https://i.ibb.co/FL3FC7nw/Manish-Sharma.jpg" alt="Manish Sharma" class="w-36 h-36 rounded-xl object-cover border-2 border-white/6 shadow">
+        </div>
+      </div>
+
+      <!-- SKILLS SECTION -->
+      <div id="skills" class="glass rounded-2xl p-6 skills-section">
+        <h2 class="text-xl font-semibold mb-6">Skills & Technical Expertise</h2>
+        
+        <!-- Technical Skills -->
+        <div class="mb-8" data-aos="fade-up">
+          <h3 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-laptop-code"></i>Technical Skills</h3>
+          <div class="flex flex-col gap-6 mt-6">
+            <!-- Programming -->
+            <div data-aos="fade-up" data-aos-delay="100">
+              <h4 class="text-base font-semibold mb-3 flex items-center gap-2 text-white/80"><i class="fa-solid fa-code"></i>Programming</h4>
+              <div class="skills-grid">
+                <div class="skills-card">
+                  <i class="fa-brands fa-python"></i>
+                  <span>Python</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-database"></i>
+                  <span>SQL</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-brands fa-html5"></i>
+                  <span>HTML</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-c"></i>
+                  <span>C</span>
+                </div>
+              </div>
+            </div>
+            <!-- Data Science & Analytics -->
+            <div data-aos="fade-up" data-aos-delay="200">
+              <h4 class="text-base font-semibold mb-3 flex items-center gap-2 text-white/80"><i class="fa-solid fa-chart-line"></i>Data Science & Analytics</h4>
+              <div class="skills-grid">
+                <div class="skills-card">
+                  <i class="fa-solid fa-chart-bar"></i>
+                  <span>Power BI</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-chart-area"></i>
+                  <span>Tableau</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-file-excel"></i>
+                  <span>Advanced Excel</span>
+                </div>
+              </div>
+            </div>
+            <!-- Machine Learning with AI -->
+            <div data-aos="fade-up" data-aos-delay="300">
+              <h4 class="text-base font-semibold mb-3 flex items-center gap-2 text-white/80"><i class="fa-solid fa-brain"></i>Machine Learning & AI</h4>
+              <div class="skills-grid">
+                <div class="skills-card">
+                  <i class="fa-solid fa-robot"></i>
+                  <span>Deep Learning</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-network-wired"></i>
+                  <span>Neural Networks</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-gears"></i>
+                  <span>Data Manipulation</span>
+                </div>
+              </div>
+            </div>
+            <!-- Database Management -->
+            <div data-aos="fade-up" data-aos-delay="400">
+              <h4 class="text-base font-semibold mb-3 flex items-center gap-2 text-white/80"><i class="fa-solid fa-server"></i>Database Management</h4>
+              <div class="skills-grid">
+                <div class="skills-card">
+                  <i class="fa-solid fa-database"></i>
+                  <span>MySQL</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-file-invoice"></i>
+                  <span>MS Access</span>
+                </div>
+              </div>
+            </div>
+            <!-- Development Tools -->
+            <div data-aos="fade-up" data-aos-delay="500">
+              <h4 class="text-base font-semibold mb-3 flex items-center gap-2 text-white/80"><i class="fa-solid fa-toolbox"></i>Development Tools</h4>
+              <div class="skills-grid">
+                <div class="skills-card">
+                  <i class="fa-solid fa-desktop"></i>
+                  <span>Visual Studio</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-solid fa-flask"></i>
+                  <span>Jupyter</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-brands fa-git-alt"></i>
+                  <span>Git/GitHub</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-brands fa-android"></i>
+                  <span>Android Studio</span>
+                </div>
+              </div>
+            </div>
+            <!-- Productivity -->
+            <div data-aos="fade-up" data-aos-delay="600">
+              <h4 class="text-base font-semibold mb-3 flex items-center gap-2 text-white/80"><i class="fa-solid fa-star-of-life"></i>Productivity</h4>
+              <div class="skills-grid">
+                <div class="skills-card">
+                  <i class="fa-regular fa-hard-drive"></i>
+                  <span>MS Office</span>
+                </div>
+                <div class="skills-card">
+                  <i class="fa-brands fa-windows"></i>
+                  <span>Windows OS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Professional and Core Skills -->
+        <div data-aos="fade-up">
+          <h3 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-briefcase"></i>Professional & Core Skills</h3>
+          <div class="flex flex-col gap-4 mt-6">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-chart-pie"></i>Data Analytics</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-chart-line"></i>Data Visualization</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-server"></i>Database Management</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-table"></i>Spreadsheet Expertise</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-gauge-high"></i>Dashboards Creation</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-arrow-trend-up"></i>Statistical Analysis</div>
+            </div>
+            <div class="flex flex-wrap gap-2 text-sm mt-2">
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-comments"></i>Communication</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-users"></i>Leadership & Team Management</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-lightbulb"></i>Critical-Thinking</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-clock"></i>Time Management</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-bug"></i>Debugging & Testing</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-puzzle-piece"></i>Problem-Solving</div>
+                <div class="tag flex items-center gap-2"><i class="fa-solid fa-link"></i>APIs Integration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJECTS with categories & filters -->
+      <div id="projects" class="glass rounded-2xl p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-xl font-semibold">Key Projects</h2>
+          <!-- Updated link for the main repository -->
+          <a href="https://github.com/themanishpndt?tab=repositories" target="_blank" class="btn-outline text-xs">Visit My Projects Repository</a>
+        </div>
+        
+        <!-- Categorized project overview -->
+        <div class="space-y-6 mb-8">
+            <div data-aos="fade-up">
+                <h3 class="text-lg font-bold flex items-center gap-2 project-category">
+                    <i class="fa-solid fa-brain"></i>AI/ML & Deep Learning with Algorithms
+                </h3>
+                <p class="text-sm text-white/80">
+                    Applied ML/DL models for health, behavior, and prediction tasks using CNN, LSTM, Random Forest, NLP, and classification techniques.
+                </p>
+                <div class="mt-2 flex flex-wrap gap-2">
+                    <span class="tag">Brain Tumor Detection</span>
+                    <span class="tag">Diabetes & Heart Disease Prediction</span>
+                    <span class="tag">Human Activity Recognition</span>
+                    <span class="tag">Employee & Loan Prediction</span>
+                    <span class="tag">Gender & Age Detection</span>
+                    <span class="tag">AI Chatbots</span>
+                    <span class="tag">Research Topic & MoA Prediction</span>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="100">
+                <h3 class="text-lg font-bold flex items-center gap-2 project-category">
+                    <i class="fa-solid fa-chart-line"></i>Data Analytics & Visualization
+                </h3>
+                <p class="text-sm text-white/80">
+                    Created analytical dashboards and predictive models using regression, classification, and visualization tools like Power BI, Tableau, and Python libraries.
+                </p>
+                <div class="mt-2 flex flex-wrap gap-2">
+                    <span class="tag">Power BI Dashboards</span>
+                    <span class="tag">Tableau Dashboards</span>
+                    <span class="tag">Excel (Pivot/VBA) Reports</span>
+                    <span class="tag">IPL Score Predictor</span>
+                    <span class="tag">Wine Quality Prediction</span>
+                    <span class="tag">Property Fine Risk</span>
+                    <span class="tag">College Admission Prediction</span>
+                    <span class="tag">Python Data Analysis</span>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-lg font-bold flex items-center gap-2 project-category">
+                    <i class="fa-solid fa-code"></i>Python & Web Applications
+                </h3>
+                <p class="text-sm text-white/80">
+                    Built automation and computer vision apps with Python, Flask, OpenCV, and GUI tools for real-time interaction and user-friendly interfaces.
+                </p>
+                <div class="mt-2 flex flex-wrap gap-2">
+                    <span class="tag">Smart Face Recognition Attendance System</span>
+                    <span class="tag">GUI Apps (Tkinter)</span>
+                    <span class="tag">Smile Detection Camera</span>
+                    <span class="tag">Image Colorization</span>
+                    <span class="tag">Lane Detection</span>
+                    <span class="tag">Python Web Apps</span>
+                </div>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <h3 class="text-lg font-bold flex items-center gap-2 project-category">
+                    <i class="fa-solid fa-database"></i>SQL Query Optimization & DB Management
+                </h3>
+                <p class="text-sm text-white/80">
+                    Managed and optimized databases, structured queries, and relational schemas for efficient data access and reporting.
+                </p>
+            </div>
+        </div>
+
+        <!-- Project list from user's table -->
+        <div class="space-y-4">
+          <!-- AI Room Booking Chatbot -->
+          <article class="project-list-item" data-aos="fade-up">
+            <div class="project-icon"><i class="fa-solid fa-comment-dots"></i></div>
+            <div class="project-content">
+              <h4>AI Room Booking Chatbot</h4>
+              <p>An intelligent chatbot built with <strong>IBM Watson Assistant</strong> to facilitate room bookings.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/AI%20Room%20Booking%20Chatbot%20%5BIBM%20WATSON%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Brain Tumor Detection (Flask App) -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="100">
+            <div class="project-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="project-content">
+              <h4>Brain Tumor Detection (Flask App)</h4>
+              <p>A deep learning-based <strong>Flask</strong> app for detecting brain tumors in MRI scans using <strong>PyTorch</strong>. Medical professionals can upload scans to receive predictions.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/BRAIN%20TUMOR%20DETECTION%20%5BEND%202%20END%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+          
+          <!-- Arrhythmia Classification -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="200">
+            <div class="project-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+            <div class="project-content">
+              <h4>Arrhythmia Classification</h4>
+              <p>Predict and classify arrhythmias using <strong>machine learning</strong> algorithms and ECG data. Dataset from the <a href="https://archive.ics.uci.edu/ml/datasets/Arrhythmia" class="text-accent hover:underline" target="_blank">UCI Repository</a>.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Classification%20of%20Arrhythmia%20%5BECG%20DATA%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+          
+          <!-- Image Colorization -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="300">
+            <div class="project-icon"><i class="fa-solid fa-palette"></i></div>
+            <div class="project-content">
+              <h4>Image Colorization</h4>
+              <p>A deep learning-based solution for colorizing black-and-white images using <strong>OpenCV</strong> and deep neural networks.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Colorize%20Black%20%26%20white%20images%20%5BOPEN%20CV%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+          
+          <!-- Diabetes Prediction (Flask App) -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="400">
+            <div class="project-icon"><i class="fa-solid fa-pills"></i></div>
+            <div class="project-content">
+              <h4>Diabetes Prediction (Flask App)</h4>
+              <p>A web application for predicting the likelihood of diabetes based on health parameters. Built using <strong>Flask</strong> and <strong>scikit-learn</strong>.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Diabetes%20Prediction%20%5BEND%202%20END%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+          
+          <!-- Distracted Driver Detection -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="500">
+            <div class="project-icon"><i class="fa-solid fa-car-side"></i></div>
+            <div class="project-content">
+              <h4>Distracted Driver Detection</h4>
+              <p>Detect different distracted behaviors of drivers (e.g., texting, eating) using <strong>CNN</strong> and <strong>image classification</strong> techniques.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Distracted%20Driver%20Detection" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+          
+          <!-- Driver Drowsiness Detection -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="600">
+            <div class="project-icon"><i class="fa-solid fa-bed"></i></div>
+            <div class="project-content">
+              <h4>Driver Drowsiness Detection</h4>
+              <p>Detect drowsiness in drivers using <strong>OpenCV</strong> and <strong>CNN</strong> models based on eye status, with real-time alerts for safety.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Drowsiness%20detection%20%5BOPEN%20CV%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+          
+          <!-- Emoji Generator Based on Emotions (Tkinter) -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="700">
+            <div class="project-icon"><i class="fa-regular fa-face-laugh"></i></div>
+            <div class="project-content">
+              <h4>Emoji Generator Based on Emotions (Tkinter)</h4>
+              <p>A <strong>Tkinter</strong> GUI application that detects facial expressions in real time and generates emojis based on detected emotions.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Emoji%20Generator" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Gender and Age Detection -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="800">
+            <div class="project-icon"><i class="fa-solid fa-user-tag"></i></div>
+            <div class="project-content">
+              <h4>Gender and Age Detection</h4>
+              <p>A deep learning-based app that predicts the gender and age of a person using facial images and <strong>OpenCV</strong>.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Gender%20and%20age%20detection%20using%20deep%20learning" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Heart Disease Prediction -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="900">
+            <div class="project-icon"><i class="fa-solid fa-heart-circle-bolt"></i></div>
+            <div class="project-content">
+              <h4>Heart Disease Prediction</h4>
+              <p>Predict the likelihood of heart disease based on medical attributes. Built using <strong>scikit-learn</strong> models, with 92% accuracy.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Heart%20Disease%20Prediction%20%5BEND%202%20END%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Human Activity Recognition (LSTM) -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="1000">
+            <div class="project-icon"><i class="fa-solid fa-person-running"></i></div>
+            <div class="project-content">
+              <h4>Human Activity Recognition (LSTM)</h4>
+              <p>Classify human activities using <strong>2D pose estimation</strong> and <strong>LSTM</strong>. Explore the application of limited dataset inputs for behavior prediction.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Human%20Activity%20Detection" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Human Detection & Counting -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="1100">
+            <div class="project-icon"><i class="fa-solid fa-user-group"></i></div>
+            <div class="project-content">
+              <h4>Human Detection & Counting</h4>
+              <p>An <strong>OpenCV</strong> project that detects humans in images/videos and counts the number of people present.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Human%20Detection%20%26%20Counting%20Project%20%5BOPEN%20CV%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- IPL Score Prediction -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="1200">
+            <div class="project-icon"><i class="fa-solid fa-cricket-bat-ball"></i></div>
+            <div class="project-content">
+              <h4>IPL Score Prediction</h4>
+              <p>Predict first-inning scores in IPL matches using <strong>EDA</strong> and various regression models (Linear, Decision Tree, Random Forest, etc.).</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/IPL%20Score%20Prediction" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Iris Flower Classification -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="1300">
+            <div class="project-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="project-content">
+              <h4>Iris Flower Classification</h4>
+              <p>Classify iris flowers into different species based on petal and sepal measurements using classic machine learning algorithms.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Iris%20Flower%20Classification" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Medical Chatbot (NLP) -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="1400">
+            <div class="project-icon"><i class="fa-solid fa-comment-medical"></i></div>
+            <div class="project-content">
+              <h4>Medical Chatbot (NLP)</h4>
+              <p>A medical chatbot built with <strong>NLP</strong> that uses a dataset of disease symptoms and responds with probable diagnoses.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Medical%20Chatbot%20%5BEND%202%20END%5D%20%5BNLP%5D" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Predict Employee Turnover -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="1500">
+            <div class="project-icon"><i class="fa-solid fa-person-walking-arrow-right"></i></div>
+            <div class="project-content">
+              <h4>Predict Employee Turnover</h4>
+              <p>Predict employee turnover using <strong>scikit-learn</strong> decision trees and random forest models.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Predict%20Employee%20Turnover%20with%20scikitlearn" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+
+          <!-- Wine Quality Prediction -->
+          <article class="project-list-item" data-aos="fade-up" data-aos-delay="1600">
+            <div class="project-icon"><i class="fa-solid fa-wine-glass"></i></div>
+            <div class="project-content">
+              <h4>Wine Quality Prediction</h4>
+              <p>Predict wine quality using physicochemical features like acidity, sugar, and pH with machine learning models.</p>
+              <a href="https://github.com/themanishpndt/Machine-Learning-Projects/tree/main/Wine%20Quality%20prediction" target="_blank" class="btn-outline text-xs">Visit Project</a>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- EXPERIENCE -->
+      <div id="experience" class="glass rounded-2xl p-6">
+        <h2 class="text-xl font-semibold mb-3">Experience – Work History</h2>
+        <div class="space-y-4">
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">PROFESSIONAL - Graphic Designing Coordinator</h3>
+            <p class="text-sm text-white/80">EWL Department, IMSUCC Ghaziabad | May 2023 - July 2025 (Hybrid)</p>
+            <ul class="list-disc list-inside mt-2 text-sm space-y-1 text-white/80">
+              <li>Led creative direction for institutional events, managing a team of student designers and overseeing event photography for official communications.</li>
+              <li>Produced print/digital assets (posters, banners, social media graphics) with brand consistency and collaborated with content and photography teams for integrated campaigns.</li>
+              <li>Mentored team members in design principles and tools like Canva and Photoshop through hands-on training sessions.</li>
+            </ul>
+          </div>
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">INTERNSHIP - Python Programming Intern</h3>
+            <p class="text-sm text-white/80">CodSoft | Sep 2024 - Oct 2024 (Remote)</p>
+            <ul class="list-disc list-inside mt-2 text-sm space-y-1 text-white/80">
+              <li>Developed Python applications through hands-on projects, writing clean and maintainable code while applying software development best practices.</li>
+              <li>Collaborated virtually using problem-solving methodologies, enhancing both coding and teamwork skills.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDUCATION & CERTIFICATIONS -->
+      <div id="education" class="glass rounded-2xl p-6">
+        <h2 class="text-xl font-semibold mb-3">Education & Certifications</h2>
+        <div class="space-y-4">
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">Bachelor of Computer Applications (BCA)</h3>
+            <p class="text-sm text-white/80">Institute of Management Studies UCC, Ghaziabad | 2022 - 2025 (Expected)</p>
+          </div>
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">Intermediate (XII), Commerce</h3>
+            <p class="text-sm text-white/80">DHT Saraswati Vidya Mandir, Ghaziabad (CBSE) | 2021 - 2022</p>
+          </div>
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">High School (X)</h3>
+            <p class="text-sm text-white/80">Dolphin Public School, G.B. Nagar (CBSE) | 2019 - 2020</p>
+          </div>
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">IBM Data Science Professional Certificate (Coursera)</h3>
+            <ul class="list-disc list-inside mt-2 text-sm space-y-1 text-white/80">
+              <li>Data Analysis, ML with Python (Honors), AI/ML (Intermediate), Intro to AI (Honors), Python for DS/AI</li>
+            </ul>
+          </div>
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">Python Programming Internship</h3>
+            <p class="text-sm text-white/80">CodSoft | Sep 2024 - Oct 2024</p>
+            <ul class="list-disc list-inside mt-2 text-sm space-y-1 text-white/80">
+              <li>Design multiple Python applications demonstrating core programming concepts.</li>
+            </ul>
+          </div>
+          <div class="glass p-4 rounded-lg">
+            <h3 class="font-semibold">Advanced Data Science Course (Data Analysis & AI/ML with Python)</h3>
+            <p class="text-sm text-white/80">DUCAT, Noida, 63 | March 2024 - May 2025</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div id="contact" class="glass rounded-2xl p-6">
+        <h2 class="text-xl font-semibold mb-3">Contact</h2>
+        <p class="text-sm text-white/80">Want to collaborate? Drop a message — I usually reply within 24–48 hours.</p>
+        <form id="contactForm" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input type="text" id="name" placeholder="Your name" class="p-3 rounded-md bg-transparent border border-white/6" required>
+          <input type="email" id="email" placeholder="Your email" class="p-3 rounded-md bg-transparent border border-white/6" required>
+          <input type="text" id="subject" placeholder="Subject" class="p-3 rounded-md bg-transparent border border-white/6 col-span-1 md:col-span-2" required>
+          <textarea id="message" placeholder="Message" class="p-3 rounded-md bg-transparent border border-white/6 col-span-1 md:col-span-2" rows="5" required></textarea>
+          <div class="col-span-1 md:col-span-2 flex gap-3 flex-wrap items-center">
+            <button type="submit" class="btn-neon">Send Message</button>
+            <a id="downloadPDF" class="btn-outline" href="https://drive.google.com/file/d/17lczC9_YtDE7qQOgVz8IXNAE6AH9Lo-X/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Download PDF</a>
+            <a href="tel:+917982682852" class="btn-outline">Call</a>
+            <a href="https://wa.me/917982682852" target="_blank" class="btn-outline">WhatsApp</a>
+          </div>
+        </form>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="max-w-6xl mx-auto px-4 py-6 text-center text-white/70">
+    <div class="flex justify-between items-center gap-4">
+      <div>© <span id="year"></span> Manish Sharma</div>
+      <div class="flex gap-3 flex-wrap">
+        <a href="https://github.com/themanishpndt" target="_blank" class="glass w-9 h-9 grid place-items-center rounded-md"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/themanishpndt" target="_blank" class="glass w-9 h-9 grid place-items-center rounded-md"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/themanishpndt" target="_blank" class="glass w-9 h-9 grid place-items-center rounded-md"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://twitter.com/themanishpndt" target="_blank" class="glass w-9 h-9 grid place-items-center rounded-md"><i class="fa-brands fa-twitter"></i></a>
+        <a href="https://www.facebook.com/themanishpndt" target="_blank" class="glass w-9 h-9 grid place-items-center rounded-md"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://youtube.com/@themanishpndt" target="_blank" class="glass w-9 h-9 grid place-items-center rounded-md"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://youtube.com/@ffshayar" target="_blank" class="glass w-9 h-9 grid place-items-center rounded-md"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="toTop" class="back-to-top">↑</button>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:600,once:true});
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const hamb = document.getElementById('hamb');
+    const mnav = document.getElementById('mnav');
+    hamb.addEventListener('click', ()=> mnav.classList.toggle('hidden'));
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', ()=>{ if(window.scrollY>400) toTop.style.display='block'; else toTop.style.display='none'; });
+    toTop.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Contact form to mailto:
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = contactForm.querySelector('#name').value;
+      const email = contactForm.querySelector('#email').value;
+      const subject = contactForm.querySelector('#subject').value;
+      const message = contactForm.querySelector('#message').value;
+
+      const mailtoLink = `mailto:manishsharma93155@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Sender Name: ' + name + '\\nSender Email: ' + email + '\\n\\nMessage:\\n' + message)}`;
+      
+      window.location.href = mailtoLink;
+      
+      // Reset the form after the link is opened
+      contactForm.reset();
+    });
+  </script>
+</body>
+</html>
